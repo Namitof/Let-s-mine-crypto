@@ -1,13 +1,47 @@
+require("src/screens/ScreenMenu")
+require("src/screens/ScreenGame")
+require("src/screens/ScreenManager")
+
+local mousePos = {
+    x = 0,
+    y = 0
+}
+
 function love.load()
-    x, y, w, h = 20, 20, 60, 20
+    SetScreen(screen.menu)
+    
+    love.window.setTitle("Let's mine crypto!")
+    love.window.setMode(1280,720)
+    width, height = love.graphics.getDimensions( )
+
+    --Recursos
+    local font = love.graphics.newFont("res/font/VCR_OSD_MONO_1.001.ttf", 30)
+
+    --Inicializacion de escenas
+    menuInit(font)
+    gameInit(width,height,font)
 end
 
 function love.update(dt)
-    w = w + 1
-    h = h + 1
+    --Obtener posicion del mouse
+    mousePos.x, mousePos.y = love.mouse.getPosition() 
+
+    --Escenas
+    if (GetScreen() == screen.menu) then
+        menuUpdate(mousePos)
+    elseif (GetScreen() == screen.game) then
+        gameUpdate(mousePos)
+    elseif (GetScreen() == screen.exit) then
+        love.window.close()
+    end
 end
 
 function love.draw()
-    love.graphics.setColor(0, 0.4, 0.4)
-    love.graphics.rectangle("fill", x, y, w, h)
+
+    --Escenas
+    if (GetScreen() == screen.menu) then
+        menuDraw()
+    elseif (GetScreen() == screen.game) then
+        gameDraw()
+    end
 end
