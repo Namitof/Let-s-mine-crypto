@@ -1,4 +1,4 @@
-require("../src/objects/Button")
+require("src/objects/Button")
 
 local playButton = {
     x = 100,
