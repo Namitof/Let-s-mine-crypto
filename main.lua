@@ -7,15 +7,15 @@ local mousePos = {
     y = 0
 }
 
+--Recursos
+    local font = love.graphics.newFont("res/font/VCR_OSD_MONO_1.001.ttf", 40)
+
 function love.load()
     SetScreen(screen.menu)
     
     love.window.setTitle("Let's mine crypto!")
     love.window.setMode(1280,720)
     width, height = love.graphics.getDimensions( )
-
-    --Recursos
-    local font = love.graphics.newFont("res/font/VCR_OSD_MONO_1.001.ttf", 30)
 
     --Inicializacion de escenas
     menuInit(font)
@@ -29,6 +29,11 @@ function love.update(dt)
     --Escenas
     if (GetScreen() == screen.menu) then
         menuUpdate(mousePos)
+
+        if (GetScreen() == screen.game) then
+            gameInit(width,height,font)
+        end
+        
     elseif (GetScreen() == screen.game) then
         gameUpdate(dt, mousePos)
     elseif (GetScreen() == screen.exit) then
