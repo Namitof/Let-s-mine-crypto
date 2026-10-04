@@ -30,7 +30,7 @@ function love.update(dt)
     if (GetScreen() == screen.menu) then
         menuUpdate(mousePos)
     elseif (GetScreen() == screen.game) then
-        gameUpdate(mousePos)
+        gameUpdate(dt, mousePos)
     elseif (GetScreen() == screen.exit) then
         love.window.close()
     end

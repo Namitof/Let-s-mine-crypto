@@ -7,6 +7,12 @@ local clickerButton = {
     wasPresed = false
 }
 
+local powerUpOne = {
+    count = 0,
+    time = 5,
+    addCoins = 10
+}
+
 local fontGame
 
 local coins = 0
@@ -21,8 +27,15 @@ function gameInit(width, height, font)
     clickerButton.y = height/2 - clickerButton.height/2
 end
 
-function gameUpdate(mousePos)
+function gameUpdate(dt, mousePos)
     clickerButton.wasPresed = clickerButton.isPresed
+
+    if (powerUpOne.count >= powerUpOne.time) then
+        coins = coins + powerUpOne.addCoins
+        powerUpOne.count = 0
+    else
+        powerUpOne.count = powerUpOne.count + dt
+    end
 
     CheckButton(clickerButton, mousePos)
 
