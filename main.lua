@@ -12,8 +12,8 @@ local mousePos = {
     local font = love.graphics.newFont("res/font/VCR_OSD_MONO_1.001.ttf", 40)
 
 function love.load()
-    SetScreen(screen.credits)
-    
+    SetScreen(screen.menu)
+
     love.window.setTitle("Let's mine crypto!")
     love.window.setMode(1280,720)
     width, height = love.graphics.getDimensions( )

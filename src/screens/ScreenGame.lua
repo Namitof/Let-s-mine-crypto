@@ -20,7 +20,7 @@ local clickerButton = {
     wasPresed = false
 }
 
-local exitButton = {
+local backButton = {
     x = 0,
     y = 0,
     width = 110,
@@ -123,8 +123,8 @@ function gameInit(width, height, font)
     clickerButton.x = width/2 - clickerButton.width/2
     clickerButton.y = height/2 - clickerButton.height/2
 
-    exitButton.x = 0
-    exitButton.y = height - exitButton.height
+    backButton.x = 0
+    backButton.y = height - backButton.height
 
     powerUpOneButton.x = 200
     powerUpOneButton.y = 200
@@ -167,7 +167,7 @@ function gameUpdate(dt, mousePos)
     powerUpTwoButton.wasPresed = powerUpTwoButton.isPresed
     powerUpThreeButton.wasPresed = powerUpThreeButton.isPresed
     energyButton.wasPresed = energyButton.isPresed
-    exitButton.wasPresed = exitButton.isPresed
+    backButton.wasPresed = backButton.isPresed
 
     --Evaluar estado de powerUps
     CheckPowerUp(powerUpOne, stats, dt)
@@ -242,9 +242,9 @@ function gameUpdate(dt, mousePos)
         end
     end
 
-    --Exit button
-    CheckButton(exitButton, mousePos)
-    if (not exitButton.isPresed and exitButton.wasPresed) then
+    --Back button
+    CheckButton(backButton, mousePos)
+    if (not backButton.isPresed and backButton.wasPresed) then
         SetScreen(screen.menu)
     end
     
@@ -268,7 +268,7 @@ function gameDraw()
     love.graphics.rectangle("line", energyButton.x, energyButton.y, energyButton.width, energyButton.height)
 
     love.graphics.setColor(0.5, 0.5, 0.5, 1)
-    love.graphics.rectangle("line", exitButton.x, exitButton.y, exitButton.width, exitButton.height)
+    love.graphics.rectangle("line", backButton.x, backButton.y, backButton.width, backButton.height)
 
     --Dibujar texto coins
     love.graphics.setColor(1, 0, 0, 1)
