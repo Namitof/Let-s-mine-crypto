@@ -17,10 +17,10 @@ function creditsDraw()
     creditsTextArt = love.graphics.newText(fontCredits, "Art by:")
     creditsTextArtBy = love.graphics.newText(fontCredits, "Mercedes Ramirez Diaz")
 
-    love.graphics.draw (creditsTextDraw, 60, 50)
-    love.graphics.draw (creditsTextGameDevelopment, 50, 100)
-    love.graphics.draw (creditsTextGameDeveloper1, 50, 130) --x, y
-    love.graphics.draw (creditsTextGameDeveloper2, 30, 160) 
-    love.graphics.draw (creditsTextArt, 60, 190)
-    love.graphics.draw (creditsTextArtBy, 50, 220)
+    love.graphics.draw (creditsTextDraw, 420, 50)
+    love.graphics.draw (creditsTextGameDevelopment, 400, 110)
+    love.graphics.draw (creditsTextGameDeveloper1, 400, 160) --x, y
+    love.graphics.draw (creditsTextGameDeveloper2, 400, 200) 
+    love.graphics.draw (creditsTextArt, 400, 260)
+    love.graphics.draw (creditsTextArtBy, 400, 310)
 end
