@@ -2,6 +2,14 @@ require("src/objects/PowerUp")
 require("src/objects/EnergyManager")
 require("src/screens/ScreenManager")
 
+--Constantes
+local POWER_UP_ONE_PRICE = 0
+local POWER_UP_TWO_PRICE = 0
+local POWER_UP_THREE_PRICE = 0
+
+local BUTTON_WIDTH = 0
+local BUTTON_HEIGTH = 0
+
 --Buttons
 local clickerButton = {
     x = 0,
@@ -39,8 +47,42 @@ local powerUpOneButton = {
     wasPresed = false
 }
 
+local powerUpTwoButton = {
+    x = 0,
+    y = 0,
+    width = 110,
+    height = 50,
+    isPresed = false,
+    wasPresed = false
+}
+
+local powerUpThreeButton = {
+    x = 0,
+    y = 0,
+    width = 110,
+    height = 50,
+    isPresed = false,
+    wasPresed = false
+}
+
 --Power ups
 local powerUpOne = {
+    count = 0,
+    time = 0.5,
+    addCoins = 0.1,
+    isEquiped = false,
+    quantity = 0
+}
+
+local powerUpTwo = {
+    count = 0,
+    time = 0.5,
+    addCoins = 0.1,
+    isEquiped = false,
+    quantity = 0
+}
+
+local powerUpThree = {
     count = 0,
     time = 0.5,
     addCoins = 0.1,
@@ -87,6 +129,12 @@ function gameInit(width, height, font)
     powerUpOneButton.x = 200
     powerUpOneButton.y = 200
 
+    powerUpTwoButton.x = 200
+    powerUpTwoButton.y = 300
+
+    powerUpThreeButton.x = 200
+    powerUpThreeButton.y = 400
+
     energyButton.x = 0
     energyButton.y = 0
 
@@ -97,6 +145,18 @@ function gameInit(width, height, font)
     powerUpOne.isEquiped = false
     powerUpOne.quantity = 0
 
+    powerUpTwo.count = 0
+    powerUpTwo.time = 1
+    powerUpTwo.addCoins = 1
+    powerUpTwo.isEquiped = false
+    powerUpTwo.quantity = 0
+
+    powerUpThree.count = 0
+    powerUpThree.time = 5
+    powerUpThree.addCoins = 10
+    powerUpThree.isEquiped = false
+    powerUpThree.quantity = 0
+
 end
 
 function gameUpdate(dt, mousePos)
@@ -104,11 +164,15 @@ function gameUpdate(dt, mousePos)
     --Actualizar estado de botones
     clickerButton.wasPresed = clickerButton.isPresed
     powerUpOneButton.wasPresed = powerUpOneButton.isPresed
+    powerUpTwoButton.wasPresed = powerUpTwoButton.isPresed
+    powerUpThreeButton.wasPresed = powerUpThreeButton.isPresed
     energyButton.wasPresed = energyButton.isPresed
     exitButton.wasPresed = exitButton.isPresed
 
     --Evaluar estado de powerUps
     CheckPowerUp(powerUpOne, stats, dt)
+    CheckPowerUp(powerUpTwo, stats, dt)
+    CheckPowerUp(powerUpThree, stats, dt)
 
     --Evaluar energy
     CheckEnergy(energy, stats, dt)
@@ -117,7 +181,7 @@ function gameUpdate(dt, mousePos)
     end
 
     --Win condition
-    if (stats.coins >= 10) then
+    if (stats.coins >= 1000) then
         SetScreen(screen.menu)
     end
 
@@ -133,9 +197,39 @@ function gameUpdate(dt, mousePos)
         if (stats.coins >= 10 and (not powerUpOne.isEquiped)) then
             powerUpOne.isEquiped = true
             stats.coins = stats.coins - 10
+            powerUpOne.quantity = 1
         elseif (stats.coins >= 10 and (powerUpOne.isEquiped)) then
             powerUpOne.addCoins = powerUpOne.addCoins + 0.1
             stats.coins = stats.coins - 10
+            powerUpOne.quantity = powerUpOne.quantity + 1
+        end
+    end
+
+    --PowerUp dos
+    CheckButton(powerUpTwoButton, mousePos)
+    if (not powerUpTwoButton.isPresed and powerUpTwoButton.wasPresed) then
+        if (stats.coins >= 10 and (not powerUpTwo.isEquiped)) then
+            powerUpTwo.isEquiped = true
+            stats.coins = stats.coins - 10
+            powerUpTwo.quantity = 1
+        elseif (stats.coins >= 10 and (powerUpTwo.isEquiped)) then
+            powerUpTwo.addCoins = powerUpTwo.addCoins + 0.1
+            stats.coins = stats.coins - 10
+            powerUpTwo.quantity = powerUpTwo.quantity + 1
+        end
+    end
+
+    --PowerUp tres
+    CheckButton(powerUpThreeButton, mousePos)
+    if (not powerUpThreeButton.isPresed and powerUpThreeButton.wasPresed) then
+        if (stats.coins >= 10 and (not powerUpThree.isEquiped)) then
+            powerUpThree.isEquiped = true
+            stats.coins = stats.coins - 10
+            powerUpThree.quantity = 1
+        elseif (stats.coins >= 10 and (powerUpThree.isEquiped)) then
+            powerUpThree.addCoins = powerUpThree.addCoins + 0.1
+            stats.coins = stats.coins - 10
+            powerUpThree.quantity = powerUpThree.quantity + 1
         end
     end
 
@@ -163,6 +257,12 @@ function gameDraw()
 
     love.graphics.setColor(0.5, 0.5, 0.5, 1)
     love.graphics.rectangle("line", powerUpOneButton.x, powerUpOneButton.y, powerUpOneButton.width, powerUpOneButton.height)
+
+    love.graphics.setColor(0.5, 0.5, 0.5, 1)
+    love.graphics.rectangle("line", powerUpTwoButton.x, powerUpTwoButton.y, powerUpTwoButton.width, powerUpTwoButton.height)
+
+    love.graphics.setColor(0.5, 0.5, 0.5, 1)
+    love.graphics.rectangle("line", powerUpThreeButton.x, powerUpThreeButton.y, powerUpThreeButton.width, powerUpThreeButton.height)
 
     love.graphics.setColor(0.5, 0.5, 0.5, 1)
     love.graphics.rectangle("line", energyButton.x, energyButton.y, energyButton.width, energyButton.height)
