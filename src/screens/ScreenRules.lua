@@ -12,10 +12,12 @@ local backButton = {
 }
 
 function rulesInit(font)
+    --Recursos
     fontRules = font
 end
 
 function rulesUpdate(mousePos)
+    --Actualizar estado de los botones
     backButton.wasPresed = backButton.isPresed
 
     CheckButton(backButton, mousePos)
@@ -26,11 +28,13 @@ function rulesUpdate(mousePos)
 end
 
 function rulesDraw()
+    --Dibujar reglas
     love.graphics.setColor(1, 0, 0, 1)
     --rulesTextDraw =  love.graphics.newText(fontCredits, "Let's mine crypto!")
    
     love.graphics.draw (rulesTextDraw, 420, 50)
 
+    --Dibujar botones
     love.graphics.setColor(0.5, 0.5, 0.5, 1)
     love.graphics.rectangle("line", backButton.x, backButton.y, backButton.width, backButton.height)
 

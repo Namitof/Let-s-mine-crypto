@@ -12,10 +12,12 @@ local backButton = {
 }
 
 function creditsInit(font)
+    --Recursos
     fontCredits = font
 end
 
 function creditsUpdate(mousePos)
+    --Actualizar estado de botones
     backButton.wasPresed = backButton.isPresed
 
     CheckButton(backButton, mousePos)
@@ -26,6 +28,7 @@ function creditsUpdate(mousePos)
 end
 
 function creditsDraw()
+    --Dibujar creditos
     love.graphics.setColor(1, 0, 0, 1)
     creditsTextDraw = love.graphics.newText(fontCredits, "Let's mine crypto!")
     creditsTextGameDevelopment = love.graphics.newText(fontCredits, "Game Development by:")
@@ -36,11 +39,12 @@ function creditsDraw()
 
     love.graphics.draw (creditsTextDraw, 420, 50)
     love.graphics.draw (creditsTextGameDevelopment, 400, 110)
-    love.graphics.draw (creditsTextGameDeveloper1, 400, 160) --x, y
-    love.graphics.draw (creditsTextGameDeveloper2, 400, 200) 
+    love.graphics.draw (creditsTextGameDeveloper1, 400, 160)
+    love.graphics.draw (creditsTextGameDeveloper2, 400, 200)
     love.graphics.draw (creditsTextArt, 400, 260)
     love.graphics.draw (creditsTextArtBy, 400, 310)
 
+    --Dibujar botones
     love.graphics.setColor(0.5, 0.5, 0.5, 1)
     love.graphics.rectangle("line", backButton.x, backButton.y, backButton.width, backButton.height)
 

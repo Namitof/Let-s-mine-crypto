@@ -24,7 +24,7 @@ function love.load()
 
     --Inicializacion de escenas
     menuInit(font)
-    gameInit(width,height,font, computerImg, keyboardImg, mouseImg)
+    gameInit(width, height, font, computerImg, keyboardImg, mouseImg)
     creditsInit(font)
 end
 
@@ -58,7 +58,6 @@ function love.draw()
         menuDraw()
     elseif (GetScreen() == screen.game) then
         gameDraw()
-
     elseif (GetScreen() == screen.rules) then
         rulesDraw()
     elseif (GetScreen() == screen.credits) then

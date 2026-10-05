@@ -47,11 +47,12 @@ local exitButton = {
 local fontMenu
 
 function menuInit(font)
+    --Recursos
     fontMenu = font
 end
 
 function menuUpdate(mousePos)
-
+    --Actualizar estado de los botones
     playButton.wasPresed = playButton.isPresed
     rulesButton.wasPresed = rulesButton.isPresed
     creditsButton.wasPresed = creditsButton.isPresed
@@ -74,15 +75,18 @@ function menuUpdate(mousePos)
 end
 
 function menuDraw()
+    --DIbujar titulo
     love.graphics.setColor(1, 0, 0, 1)
     titleText = love.graphics.newText(fontMenu, "Let's mine crypto!")
     love.graphics.draw (titleText, 420, 50)
     
+    --Dibujar botones
     love.graphics.rectangle("fill", playButton.x, playButton.y, playButton.width, playButton.height)
     love.graphics.rectangle("fill", rulesButton.x, rulesButton.y, rulesButton.width, rulesButton.height)
     love.graphics.rectangle("fill", creditsButton.x, creditsButton.y, creditsButton.width, creditsButton.height)
     love.graphics.rectangle("fill", exitButton.x, exitButton.y, exitButton.width, exitButton.height)
    
+    --Dibujar texto de botones
     love.graphics.setColor(1, 1, 1, 1)
     playTextDraw = love.graphics.newText(fontMenu, "Play")
     rulesTextDraw = love.graphics.newText(fontMenu, "Rules")
