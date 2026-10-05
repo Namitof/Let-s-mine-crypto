@@ -3,12 +3,10 @@ require("src/objects/EnergyManager")
 require("src/screens/ScreenManager")
 
 --Constantes
-local POWER_UP_ONE_PRICE = 0
-local POWER_UP_TWO_PRICE = 0
-local POWER_UP_THREE_PRICE = 0
-
-local BUTTON_WIDTH = 0
-local BUTTON_HEIGTH = 0
+local POWER_UP_ONE_PRICE = 10
+local POWER_UP_TWO_PRICE = 10
+local POWER_UP_THREE_PRICE = 10
+local ENERGY_PRICE = 10
 
 --Buttons
 local clickerButton = {
@@ -102,92 +100,68 @@ local energy = {
     addEnergy = -1
 }
 
+--Recursos
+local fontGame
+
 local computer = {
     x = 200,
     y = 200,
-    height = 300,
-    widht = 300
+    scaleX = 1,
+    scaleY = 1,
+    image = 0
 }
 
 local keyboard = {
     x = 200,
     y = 300,
-    height = 300,
-    widht = 300
+    scaleX = 1,
+    scaleY = 1,
+    image = 0
 }
 
 local mouse = {
     x = 300,
     y = 300,
-    height = 300,
-    widht = 300
+    scaleX = 1,
+    scaleY = 1,
+    image = 0
 }
 
---Recursos
-local fontGame
-local computerImg
-local keyboardImg
-local mouseImg
-
-function gameInit(width, height, font, computer, keyboard, mouse)
-
+function gameInit(width, height, font, computerSprite, keyboardSprite, mouseSprite)
     --Recursos
     fontGame = font
-    computerImg = computer    
-    keyboardImg = keyboard  
-    mouseImg = mouse
     
-    --computer.width, computer.height = computerImg:getDimensions()
-    --keyboard.width, keyboard.height = keyboardImg:getDimensions()
-   -- mouse.width, mouse.height = mouseImg:getDimensions()
+    computer.scaleX = 1
+    computer.scaleY = 1
+    computer.image = computerSprite
+
+    keyboard.scaleX = 1
+    keyboard.scaleY = 1
+    keyboard.image = keyboardSprite
+
+    mouse.scaleX = 1
+    mouse.scaleY = 1
+    mouse.image = mouseSprite
 
     --Stats
     stats.coins = 0
     stats.energy = 100
 
     --Energy
-    energy.count = 0
-    energy.time = 1
-    energy.addEnergy = -1
+    EnergyInit(energy, 0, 1, -1)
 
     --Buttons
-    clickerButton.x = width/2 - clickerButton.width/2
-    clickerButton.y = height/2 - clickerButton.height/2
-
-    backButton.x = 0
-    backButton.y = height - backButton.height
-
-    powerUpOneButton.x = 200
-    powerUpOneButton.y = 200
-
-    powerUpTwoButton.x = 200
-    powerUpTwoButton.y = 300
-
-    powerUpThreeButton.x = 200
-    powerUpThreeButton.y = 400
-
-    energyButton.x = 0
-    energyButton.y = 0
+    ButtonInit(clickerButton, width/2 - clickerButton.width/2, height/2 - clickerButton.height/2)
+    ButtonInit(backButton, 0, height - backButton.height)
+    ButtonInit(powerUpOneButton, 200, 200)
+    ButtonInit(powerUpTwoButton, 200, 300)
+    ButtonInit(powerUpThreeButton, 200, 400)
+    ButtonInit(energyButton, 0, 0)
 
     --PowerUps
-    powerUpOne.count = 0
-    powerUpOne.time = 0.5
-    powerUpOne.addCoins = 0.1
-    powerUpOne.isEquiped = false
-    powerUpOne.quantity = 0
-
-    powerUpTwo.count = 0
-    powerUpTwo.time = 1
-    powerUpTwo.addCoins = 1
-    powerUpTwo.isEquiped = false
-    powerUpTwo.quantity = 0
-
-    powerUpThree.count = 0
-    powerUpThree.time = 5
-    powerUpThree.addCoins = 10
-    powerUpThree.isEquiped = false
-    powerUpThree.quantity = 0
-
+    PowerUpInit(powerUpOne, 0, 0.5, 0.1, false, 0)
+    PowerUpInit(powerUpTwo, 0, 1, 1, false, 0)
+    PowerUpInit(powerUpThree, 0, 5, 10, false, 0)
 end
 
 function gameUpdate(dt, mousePos)
@@ -215,7 +189,9 @@ function gameUpdate(dt, mousePos)
         SetScreen(screen.menu)
     end
 
-    --Evaluar estado del boton
+    --Evaluar estado de botones
+
+    --Clicker
     CheckButton(clickerButton, mousePos)
     if (not clickerButton.isPresed and clickerButton.wasPresed) then
         stats.coins = stats.coins + 1
@@ -224,13 +200,13 @@ function gameUpdate(dt, mousePos)
     --PowerUp uno
     CheckButton(powerUpOneButton, mousePos)
     if (not powerUpOneButton.isPresed and powerUpOneButton.wasPresed) then
-        if (stats.coins >= 10 and (not powerUpOne.isEquiped)) then
+        if (stats.coins >= POWER_UP_ONE_PRICE and (not powerUpOne.isEquiped)) then
             powerUpOne.isEquiped = true
-            stats.coins = stats.coins - 10
+            stats.coins = stats.coins - POWER_UP_ONE_PRICE
             powerUpOne.quantity = 1
-        elseif (stats.coins >= 10 and (powerUpOne.isEquiped)) then
+        elseif (stats.coins >= POWER_UP_ONE_PRICE and (powerUpOne.isEquiped)) then
             powerUpOne.addCoins = powerUpOne.addCoins + 0.1
-            stats.coins = stats.coins - 10
+            stats.coins = stats.coins - POWER_UP_ONE_PRICE
             powerUpOne.quantity = powerUpOne.quantity + 1
         end
     end
@@ -238,13 +214,13 @@ function gameUpdate(dt, mousePos)
     --PowerUp dos
     CheckButton(powerUpTwoButton, mousePos)
     if (not powerUpTwoButton.isPresed and powerUpTwoButton.wasPresed) then
-        if (stats.coins >= 10 and (not powerUpTwo.isEquiped)) then
+        if (stats.coins >= POWER_UP_TWO_PRICE and (not powerUpTwo.isEquiped)) then
             powerUpTwo.isEquiped = true
-            stats.coins = stats.coins - 10
+            stats.coins = stats.coins - POWER_UP_TWO_PRICE
             powerUpTwo.quantity = 1
-        elseif (stats.coins >= 10 and (powerUpTwo.isEquiped)) then
+        elseif (stats.coins >= POWER_UP_TWO_PRICE and (powerUpTwo.isEquiped)) then
             powerUpTwo.addCoins = powerUpTwo.addCoins + 0.1
-            stats.coins = stats.coins - 10
+            stats.coins = stats.coins - POWER_UP_TWO_PRICE
             powerUpTwo.quantity = powerUpTwo.quantity + 1
         end
     end
@@ -252,13 +228,13 @@ function gameUpdate(dt, mousePos)
     --PowerUp tres
     CheckButton(powerUpThreeButton, mousePos)
     if (not powerUpThreeButton.isPresed and powerUpThreeButton.wasPresed) then
-        if (stats.coins >= 10 and (not powerUpThree.isEquiped)) then
+        if (stats.coins >= POWER_UP_THREE_PRICE and (not powerUpThree.isEquiped)) then
             powerUpThree.isEquiped = true
-            stats.coins = stats.coins - 10
+            stats.coins = stats.coins - POWER_UP_THREE_PRICE
             powerUpThree.quantity = 1
-        elseif (stats.coins >= 10 and (powerUpThree.isEquiped)) then
+        elseif (stats.coins >= POWER_UP_THREE_PRICE and (powerUpThree.isEquiped)) then
             powerUpThree.addCoins = powerUpThree.addCoins + 0.1
-            stats.coins = stats.coins - 10
+            stats.coins = stats.coins - POWER_UP_THREE_PRICE
             powerUpThree.quantity = powerUpThree.quantity + 1
         end
     end
@@ -266,9 +242,9 @@ function gameUpdate(dt, mousePos)
     --Energy
     CheckButton(energyButton, mousePos)
     if (not energyButton.isPresed and energyButton.wasPresed) then
-        if (stats.coins >= 10) then
+        if (stats.coins >= ENERGY_PRICE) then
             stats.energy = stats.energy + 10
-            stats.coins = stats.coins - 10
+            stats.coins = stats.coins - ENERGY_PRICE
         end
     end
 
@@ -282,11 +258,11 @@ end
 
 function gameDraw()
 
-    --dibujo imagenes
+    --Dibujar imagenes
     love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.draw(computerImg, computer.x, computer.y, 0, 2, 2)
-    love.graphics.draw(keyboardImg, keyboard.x, computer.y)
-    love.graphics.draw(mouseImg, mouse.x, mouse.y)
+    love.graphics.draw(computer.image, computer.x, computer.y, 0, computer.scaleX, computer.scaleY)
+    love.graphics.draw(keyboard.image, keyboard.x, keyboard.y, 0, keyboard.scaleX, keyboard.scaleY)
+    love.graphics.draw(mouse.image, mouse.x, mouse.y, 0, mouse.scaleX, mouse.scaleY)
 
     --Dibujar rectangulo
     love.graphics.setColor(0.5, 0.5, 0.5, 1)

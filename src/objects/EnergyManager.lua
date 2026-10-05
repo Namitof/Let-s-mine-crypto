@@ -1,4 +1,9 @@
 
+function EnergyInit(energy, count, time, addEnergy)
+    energy.count = count
+    energy.time = time
+    energy.addEnergy = addEnergy
+end
 
 function CheckEnergy(energy, stats, dt)
     if (energy.count >= energy.time) then
