@@ -2,6 +2,7 @@ require("src/screens/ScreenMenu")
 require("src/screens/ScreenGame")
 require("src/screens/ScreenManager")
 require("src/screens/ScreenCredits")
+require("src/screens/ScreenRules")
 
 local mousePos = {
     x = 0,
@@ -39,10 +40,9 @@ function love.update(dt)
     elseif (GetScreen() == screen.game) then
         gameUpdate(dt, mousePos)
     elseif (GetScreen() == screen.rules) then
-        --VACIO
+        rulesUpdate(mousePos)
     elseif (GetScreen() == screen.credits) then
-        creditsUpdate()
-        --VACIO
+        creditsUpdate(mousePos)
     elseif (GetScreen() == screen.exit) then
         love.quit()
     end
@@ -56,10 +56,9 @@ function love.draw()
     elseif (GetScreen() == screen.game) then
         gameDraw()
     elseif (GetScreen() == screen.rules) then
-        --VACIO
+        rulesDraw()
     elseif (GetScreen() == screen.credits) then
         creditsDraw()
-        --VACIO
     end
 end
 
