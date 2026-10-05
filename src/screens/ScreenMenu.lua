@@ -6,7 +6,9 @@ local playButton = {
     width = 220,
     height = 80,
     isPresed = false,
-    wasPresed = false
+    wasPresed = false,
+    textX = 565,
+    textY = 220
 }
 
 local rulesButton = {
@@ -15,7 +17,9 @@ local rulesButton = {
     width = 220,
     height = 80,
     isPresed = false,
-    wasPresed = false
+    wasPresed = false,
+    textX = 550,
+    textY = 320
 }
 
 local creditsButton = {
@@ -24,7 +28,9 @@ local creditsButton = {
     width = 220,
     height = 80,
     isPresed = false,
-    wasPresed = false
+    wasPresed = false,
+    textX = 530,
+    textY = 420
 }
 
 local exitButton = {
@@ -33,7 +39,9 @@ local exitButton = {
     width = 220,
     height = 80,
     isPresed = false,
-    wasPresed = false
+    wasPresed = false,
+    textX = 565,
+    textY = 520
 }
 
 local fontMenu
@@ -74,5 +82,17 @@ function menuDraw()
     love.graphics.rectangle("fill", rulesButton.x, rulesButton.y, rulesButton.width, rulesButton.height)
     love.graphics.rectangle("fill", creditsButton.x, creditsButton.y, creditsButton.width, creditsButton.height)
     love.graphics.rectangle("fill", exitButton.x, exitButton.y, exitButton.width, exitButton.height)
+   
+    love.graphics.setColor(1, 1, 1, 1)
+    playTextDraw = love.graphics.newText(fontMenu, "Play")
+    rulesTextDraw = love.graphics.newText(fontMenu, "Rules")
+    creditsTextDraw = love.graphics.newText(fontMenu, "Credits")
+    exitTextDraw = love.graphics.newText(fontMenu, "Exit")
+
+    love.graphics.draw (playTextDraw, playButton.textX, playButton.textY)
+    love.graphics.draw (rulesTextDraw, rulesButton.textX, rulesButton.textY)
+    love.graphics.draw (creditsTextDraw, creditsButton.textX, creditsButton.textY)
+    love.graphics.draw (exitTextDraw, exitButton.textX, exitButton.textY)
+    
 end
 
