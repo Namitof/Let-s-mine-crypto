@@ -10,7 +10,10 @@ local mousePos = {
 }
 
 --Recursos
-    local font = love.graphics.newFont("res/font/VCR_OSD_MONO_1.001.ttf", 40)
+local font = love.graphics.newFont("res/font/VCR_OSD_MONO_1.001.ttf", 40)
+local computerImg = love.graphics.newImage("res/gameImg/Computer.png")
+local keyboardImg = love.graphics.newImage("res/gameImg/Keyboard.png")
+local mouseImg = love.graphics.newImage("res/gameImg/Mouse.png")
 
 function love.load()
     SetScreen(screen.menu)
@@ -21,7 +24,7 @@ function love.load()
 
     --Inicializacion de escenas
     menuInit(font)
-    gameInit(width,height,font)
+    gameInit(width,height,font, computerImg, keyboardImg, mouseImg)
     creditsInit(font)
 end
 
@@ -34,7 +37,7 @@ function love.update(dt)
         menuUpdate(mousePos)
 
         if (GetScreen() == screen.game) then
-            gameInit(width,height,font)
+            gameInit(width,height,font, computerImg, keyboardImg, mouseImg)
         end
 
     elseif (GetScreen() == screen.game) then
@@ -55,6 +58,7 @@ function love.draw()
         menuDraw()
     elseif (GetScreen() == screen.game) then
         gameDraw()
+
     elseif (GetScreen() == screen.rules) then
         rulesDraw()
     elseif (GetScreen() == screen.credits) then

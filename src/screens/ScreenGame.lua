@@ -102,13 +102,44 @@ local energy = {
     addEnergy = -1
 }
 
+local computer = {
+    x = 200,
+    y = 200,
+    height = 300,
+    widht = 300
+}
+
+local keyboard = {
+    x = 200,
+    y = 300,
+    height = 300,
+    widht = 300
+}
+
+local mouse = {
+    x = 300,
+    y = 300,
+    height = 300,
+    widht = 300
+}
+
 --Recursos
 local fontGame
+local computerImg
+local keyboardImg
+local mouseImg
 
-function gameInit(width, height, font)
+function gameInit(width, height, font, computer, keyboard, mouse)
 
     --Recursos
     fontGame = font
+    computerImg = computer    
+    keyboardImg = keyboard  
+    mouseImg = mouse
+    
+    --computer.width, computer.height = computerImg:getDimensions()
+    --keyboard.width, keyboard.height = keyboardImg:getDimensions()
+   -- mouse.width, mouse.height = mouseImg:getDimensions()
 
     --Stats
     stats.coins = 0
@@ -160,7 +191,6 @@ function gameInit(width, height, font)
 end
 
 function gameUpdate(dt, mousePos)
-
     --Actualizar estado de botones
     clickerButton.wasPresed = clickerButton.isPresed
     powerUpOneButton.wasPresed = powerUpOneButton.isPresed
@@ -251,6 +281,13 @@ function gameUpdate(dt, mousePos)
 end
 
 function gameDraw()
+
+    --dibujo imagenes
+    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.draw(computerImg, computer.x, computer.y, 0, 2, 2)
+    love.graphics.draw(keyboardImg, keyboard.x, computer.y)
+    love.graphics.draw(mouseImg, mouse.x, mouse.y)
+
     --Dibujar rectangulo
     love.graphics.setColor(0.5, 0.5, 0.5, 1)
     love.graphics.rectangle("line", clickerButton.x, clickerButton.y, clickerButton.width, clickerButton.height)
