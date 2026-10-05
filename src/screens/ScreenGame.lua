@@ -12,6 +12,15 @@ local clickerButton = {
     wasPresed = false
 }
 
+local exitButton = {
+    x = 0,
+    y = 0,
+    width = 110,
+    height = 50,
+    isPresed = false,
+    wasPresed = false
+}
+
 local energyButton = {
     x = 0,
     y = 0,
@@ -72,6 +81,9 @@ function gameInit(width, height, font)
     clickerButton.x = width/2 - clickerButton.width/2
     clickerButton.y = height/2 - clickerButton.height/2
 
+    exitButton.x = 0
+    exitButton.y = height - exitButton.height
+
     powerUpOneButton.x = 200
     powerUpOneButton.y = 200
 
@@ -93,6 +105,7 @@ function gameUpdate(dt, mousePos)
     clickerButton.wasPresed = clickerButton.isPresed
     powerUpOneButton.wasPresed = powerUpOneButton.isPresed
     energyButton.wasPresed = energyButton.isPresed
+    exitButton.wasPresed = exitButton.isPresed
 
     --Evaluar estado de powerUps
     CheckPowerUp(powerUpOne, stats, dt)
@@ -103,12 +116,18 @@ function gameUpdate(dt, mousePos)
         SetScreen(screen.menu)
     end
 
+    --Win condition
+    if (stats.coins >= 10) then
+        SetScreen(screen.menu)
+    end
+
     --Evaluar estado del boton
     CheckButton(clickerButton, mousePos)
     if (not clickerButton.isPresed and clickerButton.wasPresed) then
         stats.coins = stats.coins + 1
     end
 
+    --PowerUp uno
     CheckButton(powerUpOneButton, mousePos)
     if (not powerUpOneButton.isPresed and powerUpOneButton.wasPresed) then
         if (stats.coins >= 10 and (not powerUpOne.isEquiped)) then
@@ -120,12 +139,19 @@ function gameUpdate(dt, mousePos)
         end
     end
 
+    --Energy
     CheckButton(energyButton, mousePos)
     if (not energyButton.isPresed and energyButton.wasPresed) then
         if (stats.coins >= 10) then
             stats.energy = stats.energy + 10
             stats.coins = stats.coins - 10
         end
+    end
+
+    --Exit button
+    CheckButton(exitButton, mousePos)
+    if (not exitButton.isPresed and exitButton.wasPresed) then
+        SetScreen(screen.menu)
     end
     
 end
@@ -141,9 +167,12 @@ function gameDraw()
     love.graphics.setColor(0.5, 0.5, 0.5, 1)
     love.graphics.rectangle("line", energyButton.x, energyButton.y, energyButton.width, energyButton.height)
 
+    love.graphics.setColor(0.5, 0.5, 0.5, 1)
+    love.graphics.rectangle("line", exitButton.x, exitButton.y, exitButton.width, exitButton.height)
+
     --Dibujar texto coins
     love.graphics.setColor(1, 0, 0, 1)
-    coinsText = love.graphics.newText(fontGame, "Coins: " .. stats.coins)
+    coinsText = love.graphics.newText(fontGame, "Coins: " .. stats.coins .. " of 1000")
     love.graphics.draw (coinsText, 50, 50)
 
     --Dibujar texto energy
