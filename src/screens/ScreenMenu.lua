@@ -25,15 +25,14 @@ function menuUpdate(mousePos)
         SetScreen(screen.game)
     end
 
-
 end
 
 function menuDraw()
     love.graphics.rectangle("fill", playButton.x, playButton.y, playButton.width, playButton.height)
 
     love.graphics.setColor(1, 0, 0, 1)
-    coinsTextDraw = love.graphics.newText(fontMenu, "Let's mine crypto!")
+    titleText = love.graphics.newText(fontMenu, "Let's mine crypto!")
 
-    love.graphics.draw (coinsTextDraw, 50, 50)
+    love.graphics.draw (titleText, 50, 50)
 end
 
