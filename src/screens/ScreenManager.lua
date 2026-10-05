@@ -2,7 +2,9 @@
 screen =  {
     menu = 0,
     game = 1,
-    exit = 2,
+    rules = 2,
+    credits = 3,
+    exit = 4
 }
 
 local currentScreen = 0

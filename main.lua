@@ -33,11 +33,15 @@ function love.update(dt)
         if (GetScreen() == screen.game) then
             gameInit(width,height,font)
         end
-        
+
     elseif (GetScreen() == screen.game) then
         gameUpdate(dt, mousePos)
+    elseif (GetScreen() == screen.rules) then
+        --VACIO
+    elseif (GetScreen() == screen.credits) then
+        --VACIO
     elseif (GetScreen() == screen.exit) then
-        love.window.close()
+        love.quit()
     end
 end
 
@@ -48,5 +52,15 @@ function love.draw()
         menuDraw()
     elseif (GetScreen() == screen.game) then
         gameDraw()
+    elseif (GetScreen() == screen.rules) then
+        --VACIO
+    elseif (GetScreen() == screen.credits) then
+        --VACIO
     end
+end
+
+function love.quit()
+    font = nil
+    collectgarbage("collect")
+    love.window.close()
 end
