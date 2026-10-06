@@ -1,6 +1,18 @@
 
-local BUTTON_WIDTH = 110
-local BUTTON_HEIGTH = 50
+local BUTTON_WIDTH = 250
+local BUTTON_HEIGTH = 70
+
+local CLICKER_WIDTH = 670
+local CLICKER_HEIGTH = 80
+
+function ButtonClickerInit(button, x, y)
+    button.x = x
+    button.y = y
+    button.width = CLICKER_WIDTH
+    button.height = CLICKER_HEIGTH
+    button.isPresed = false
+    button.wasPresed = false
+end
 
 function ButtonInit(button, x, y)
     button.x = x
