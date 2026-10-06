@@ -24,7 +24,7 @@ function love.load()
     width, height = love.graphics.getDimensions( )
 
     --Inicializacion de escenas
-    menuInit(font)
+    menuInit(font, backgroundOneImg)
     gameInit(width, height, font, computerImg, keyboardImg, mouseImg, backgroundOneImg)
     creditsInit(font)
 end
@@ -34,35 +34,46 @@ function love.update(dt)
     mousePos.x, mousePos.y = love.mouse.getPosition() 
 
     --Escenas
-    if (GetScreen() == screen.menu) then
+    local currentScreen = GetScreen()
+
+    if (currentScreen == screen.menu) then
         menuUpdate(mousePos)
 
         if (GetScreen() == screen.game) then
             gameInit(width,height,font, computerImg, keyboardImg, mouseImg, backgroundOneImg)
         end
 
-    elseif (GetScreen() == screen.game) then
+    elseif (currentScreen == screen.game) then
         gameUpdate(dt, mousePos)
-    elseif (GetScreen() == screen.rules) then
+    elseif (currentScreen == screen.rules) then
         rulesUpdate(mousePos)
-    elseif (GetScreen() == screen.credits) then
+    elseif (currentScreen == screen.credits) then
         creditsUpdate(mousePos)
-    elseif (GetScreen() == screen.exit) then
+    elseif (currentScreen == screen.win) then
+        -- VACIO
+    elseif (currentScreen == screen.defeat) then
+        -- VACIO
+    elseif (currentScreen == screen.exit) then
         love.quit()
     end
 end
 
 function love.draw()
-
     --Escenas
-    if (GetScreen() == screen.menu) then
+    local currentScreen = GetScreen()
+
+    if (currentScreen == screen.menu) then
         menuDraw()
-    elseif (GetScreen() == screen.game) then
+    elseif (currentScreen == screen.game) then
         gameDraw()
-    elseif (GetScreen() == screen.rules) then
+    elseif (currentScreen == screen.rules) then
         rulesDraw()
-    elseif (GetScreen() == screen.credits) then
+    elseif (currentScreen == screen.credits) then
         creditsDraw()
+    elseif (currentScreen == screen.win) then
+        -- VACIO
+    elseif (currentScreen == screen.defeat) then
+        -- VACIO
     end
 end
 
