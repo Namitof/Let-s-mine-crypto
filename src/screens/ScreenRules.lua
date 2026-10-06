@@ -37,7 +37,8 @@ end
 
 function rulesDraw()
     --Dibujar reglas
-    love.graphics.setColor(1, 0, 0, 1)
+    love.graphics.setBackgroundColor(0.2, 0.2, 0.2)
+    love.graphics.setColor(0, 1, 0, 1)
 
     rulesTextDraw1 =  love.graphics.newText(fontRules, "Click the keyboard and mouse to mine crypto,")
     love.graphics.draw (rulesTextDraw1, 150, 50)
