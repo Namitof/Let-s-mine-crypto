@@ -53,13 +53,22 @@ function creditsDraw()
     creditsTextArtBy1 = love.graphics.newText(fontCredits, "Mercedes Ramirez Diaz")
     creditsTextArtBy2 = love.graphics.newText(fontCredits, "Nahuel Suarez")
 
-    love.graphics.draw (creditsTextDraw, 420, 50)
-    love.graphics.draw (creditsTextGameDevelopment, 400, 150)
-    love.graphics.draw (creditsTextGameDeveloper1, 400, 195)
-    love.graphics.draw (creditsTextGameDeveloper2, 400, 240)
-    love.graphics.draw (creditsTextArt, 400, 300)
-    love.graphics.draw (creditsTextArtBy1, 400, 345)
-    love.graphics.draw (creditsTextArtBy2, 400, 390)
+    creditsTextArtBy3 = love.graphics.newText(fontCredits, "Font:")
+    creditsTextArtBy4 = love.graphics.newText(fontCredits, "VCR_OSD_MONO_1.001.ttf by Riciery Leal")
+    creditsTextArtBy5 = love.graphics.newText(fontCredits, "https://www.dafont.com/es/vcr-osd-mono.font")
+
+    love.graphics.draw (creditsTextDraw, 420, 30)
+    love.graphics.draw (creditsTextGameDevelopment, 400, 100)
+    love.graphics.draw (creditsTextGameDeveloper1, 400, 145)
+    love.graphics.draw (creditsTextGameDeveloper2, 400, 190)
+    love.graphics.draw (creditsTextArt, 400, 250)
+    love.graphics.draw (creditsTextArtBy1, 400, 295)
+    love.graphics.draw (creditsTextArtBy2, 400, 340)
+
+    love.graphics.draw (creditsTextArtBy3, 600, 400)
+    love.graphics.draw (creditsTextArtBy4, 250, 445)
+    love.graphics.draw (creditsTextArtBy5, 195, 490)
+
     
     --Dibujar botones
     love.graphics.setColor(1, 1, 1, 1)
