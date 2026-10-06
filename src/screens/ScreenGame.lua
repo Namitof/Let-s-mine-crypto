@@ -159,14 +159,6 @@ local computerBackground = {
     image = 0
 }
 
-local buttonImg = {
-    x = 220,
-    y = 270,
-    scaleX = 0.28,
-    scaleY = 0.24,
-    image = 0
-}
-
 function gameInit(width, height, font, computerSprite, keyboardSprite, mouseSprite, backgroundOneSprite, computerBackgroundSprite, buttonImg)
     --Recursos
     fontGame = font
