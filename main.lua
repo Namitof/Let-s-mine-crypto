@@ -3,6 +3,7 @@ require("src/screens/ScreenGame")
 require("src/screens/ScreenManager")
 require("src/screens/ScreenCredits")
 require("src/screens/ScreenRules")
+require("src/screens/ScreenWin")
 
 local mousePos = {
     x = 0,
@@ -15,9 +16,10 @@ local computerImg = love.graphics.newImage("res/gameImg/Computer.png")
 local keyboardImg = love.graphics.newImage("res/gameImg/Keyboard.png")
 local mouseImg = love.graphics.newImage("res/gameImg/Mouse.png")
 local backgroundOneImg = love.graphics.newImage("res/background/backgroundOne.png")
+local computerBackground = love.graphics.newImage("res/gameImg/computerBackground.png")
 
 function love.load()
-    SetScreen(screen.menu)
+    SetScreen(screen.win)
 
     love.window.setTitle("Let's mine crypto!")
     love.window.setMode(1280,720)
@@ -25,8 +27,10 @@ function love.load()
 
     --Inicializacion de escenas
     menuInit(font, backgroundOneImg)
-    gameInit(width, height, font, computerImg, keyboardImg, mouseImg, backgroundOneImg)
+    gameInit(width, height, font, computerImg, keyboardImg, mouseImg, backgroundOneImg, computerBackground)
     creditsInit(font)
+    rulesInit(font)
+    winInit(font)
 end
 
 function love.update(dt)
@@ -40,7 +44,7 @@ function love.update(dt)
         menuUpdate(mousePos)
 
         if (GetScreen() == screen.game) then
-            gameInit(width,height,font, computerImg, keyboardImg, mouseImg, backgroundOneImg)
+            gameInit(width,height,font, computerImg, keyboardImg, mouseImg, backgroundOneImg, computerBackground)
         end
 
     elseif (currentScreen == screen.game) then
@@ -50,7 +54,7 @@ function love.update(dt)
     elseif (currentScreen == screen.credits) then
         creditsUpdate(mousePos)
     elseif (currentScreen == screen.win) then
-        -- VACIO
+        winUpdate(mousePos)
     elseif (currentScreen == screen.defeat) then
         -- VACIO
     elseif (currentScreen == screen.exit) then
@@ -71,7 +75,7 @@ function love.draw()
     elseif (currentScreen == screen.credits) then
         creditsDraw()
     elseif (currentScreen == screen.win) then
-        -- VACIO
+        winDraw()
     elseif (currentScreen == screen.defeat) then
         -- VACIO
     end

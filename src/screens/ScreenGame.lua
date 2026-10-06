@@ -1,6 +1,7 @@
 require("src/objects/PowerUp")
 require("src/objects/EnergyManager")
 require("src/screens/ScreenManager")
+require("src/objects/Button")
 
 --Constantes
 local POWER_UP_ONE_PRICE = 10
@@ -135,7 +136,15 @@ local backgroundOne = {
     image = 0
 }
 
-function gameInit(width, height, font, computerSprite, keyboardSprite, mouseSprite, backgroundOneSprite)
+local computerBackground = {
+    x = 220,
+    y = 270,
+    scaleX = 0.28,
+    scaleY = 0.24,
+    image = 0
+}
+
+function gameInit(width, height, font, computerSprite, keyboardSprite, mouseSprite, backgroundOneSprite, computerBackgroundSprite)
     --Recursos
     fontGame = font
     
@@ -154,6 +163,10 @@ function gameInit(width, height, font, computerSprite, keyboardSprite, mouseSpri
     backgroundOne.scaleX = 1
     backgroundOne.scaleY = 1
     backgroundOne.image = backgroundOneSprite
+
+    computerBackground.scaleX = 0.28
+    computerBackground.scaleY = 0.24
+    computerBackground.image = computerBackgroundSprite
 
     --Stats
     stats.coins = 0
@@ -274,6 +287,7 @@ function gameDraw()
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.draw(backgroundOne.image, backgroundOne.x, backgroundOne.y, 0, backgroundOne.scaleX, backgroundOne.scaleY)
     love.graphics.draw(computer.image, computer.x, computer.y, 0, computer.scaleX, computer.scaleY)
+    love.graphics.draw(computerBackground.image, computerBackground.x, computerBackground.y, 0, computerBackground.scaleX, computerBackground.scaleY)
     love.graphics.draw(keyboard.image, keyboard.x, keyboard.y, 0, keyboard.scaleX, keyboard.scaleY)
     love.graphics.draw(mouse.image, mouse.x, mouse.y, 0, mouse.scaleX, mouse.scaleY)
 
