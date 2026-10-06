@@ -78,14 +78,6 @@ local mouse = {
     image = 0
 }
 
-local backgroundOne = {
-    x = 0,
-    y = 0,
-    scaleX = 1,
-    scaleY = 1,
-    image = 0
-}
-
 function menuInit(font, computerSprite, keyboardSprite, mouseSprite, backgroundOneSprite)
     --Recursos
     fontMenu = font
