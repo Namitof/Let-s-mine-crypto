@@ -104,44 +104,56 @@ local energy = {
 local fontGame
 
 local computer = {
-    x = 200,
-    y = 200,
-    scaleX = 1,
-    scaleY = 1,
+    x = 190,
+    y = 170,
+    scaleX = 1.5,
+    scaleY = 1.5,
     image = 0
 }
 
 local keyboard = {
-    x = 200,
-    y = 300,
-    scaleX = 1,
-    scaleY = 1,
+    x = 60,
+    y = 290,
+    scaleX = 2,
+    scaleY = 2,
     image = 0
 }
 
 local mouse = {
-    x = 300,
-    y = 300,
+    x = 620,
+    y = 540,
+    scaleX = 0.5,
+    scaleY = 0.5,
+    image = 0
+}
+
+local backgroundOne = {
+    x = 0,
+    y = 0,
     scaleX = 1,
     scaleY = 1,
     image = 0
 }
 
-function gameInit(width, height, font, computerSprite, keyboardSprite, mouseSprite)
+function gameInit(width, height, font, computerSprite, keyboardSprite, mouseSprite, backgroundOneSprite)
     --Recursos
     fontGame = font
     
-    computer.scaleX = 1
-    computer.scaleY = 1
+    computer.scaleX = 1.5
+    computer.scaleY = 1.5
     computer.image = computerSprite
 
-    keyboard.scaleX = 1
-    keyboard.scaleY = 1
+    keyboard.scaleX = 2
+    keyboard.scaleY = 2
     keyboard.image = keyboardSprite
 
-    mouse.scaleX = 1
-    mouse.scaleY = 1
+    mouse.scaleX = 0.5
+    mouse.scaleY = 0.5
     mouse.image = mouseSprite
+
+    backgroundOne.scaleX = 1
+    backgroundOne.scaleY = 1
+    backgroundOne.image = backgroundOneSprite
 
     --Stats
     stats.coins = 0
@@ -151,12 +163,12 @@ function gameInit(width, height, font, computerSprite, keyboardSprite, mouseSpri
     EnergyInit(energy, 0, 1, -1)
 
     --Buttons
-    ButtonInit(clickerButton, width/2 - clickerButton.width/2, height/2 - clickerButton.height/2)
-    ButtonInit(backButton, 0, height - backButton.height)
-    ButtonInit(powerUpOneButton, 200, 200)
-    ButtonInit(powerUpTwoButton, 200, 300)
-    ButtonInit(powerUpThreeButton, 200, 400)
-    ButtonInit(energyButton, 0, 0)
+    ButtonClickerInit(clickerButton, 80, 590)
+    ButtonInit(backButton, 950, (height - backButton.height) - 40)
+    ButtonInit(powerUpOneButton, 950, 150)
+    ButtonInit(powerUpTwoButton, 950, 250)
+    ButtonInit(powerUpThreeButton, 950, 350)
+    ButtonInit(energyButton, 950, 450)
 
     --PowerUps
     PowerUpInit(powerUpOne, 0, 0.5, 0.1, false, 0)
@@ -260,28 +272,29 @@ function gameDraw()
 
     --Dibujar imagenes
     love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.draw(backgroundOne.image, backgroundOne.x, backgroundOne.y, 0, backgroundOne.scaleX, backgroundOne.scaleY)
     love.graphics.draw(computer.image, computer.x, computer.y, 0, computer.scaleX, computer.scaleY)
     love.graphics.draw(keyboard.image, keyboard.x, keyboard.y, 0, keyboard.scaleX, keyboard.scaleY)
     love.graphics.draw(mouse.image, mouse.x, mouse.y, 0, mouse.scaleX, mouse.scaleY)
 
     --Dibujar rectangulo
-    love.graphics.setColor(0.5, 0.5, 0.5, 1)
-    love.graphics.rectangle("line", clickerButton.x, clickerButton.y, clickerButton.width, clickerButton.height)
+    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.rectangle("fill", clickerButton.x, clickerButton.y, clickerButton.width, clickerButton.height)
 
-    love.graphics.setColor(0.5, 0.5, 0.5, 1)
-    love.graphics.rectangle("line", powerUpOneButton.x, powerUpOneButton.y, powerUpOneButton.width, powerUpOneButton.height)
+    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.rectangle("fill", powerUpOneButton.x, powerUpOneButton.y, powerUpOneButton.width, powerUpOneButton.height)
 
-    love.graphics.setColor(0.5, 0.5, 0.5, 1)
-    love.graphics.rectangle("line", powerUpTwoButton.x, powerUpTwoButton.y, powerUpTwoButton.width, powerUpTwoButton.height)
+    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.rectangle("fill", powerUpTwoButton.x, powerUpTwoButton.y, powerUpTwoButton.width, powerUpTwoButton.height)
 
-    love.graphics.setColor(0.5, 0.5, 0.5, 1)
-    love.graphics.rectangle("line", powerUpThreeButton.x, powerUpThreeButton.y, powerUpThreeButton.width, powerUpThreeButton.height)
+    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.rectangle("fill", powerUpThreeButton.x, powerUpThreeButton.y, powerUpThreeButton.width, powerUpThreeButton.height)
 
-    love.graphics.setColor(0.5, 0.5, 0.5, 1)
-    love.graphics.rectangle("line", energyButton.x, energyButton.y, energyButton.width, energyButton.height)
+     love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.rectangle("fill", energyButton.x, energyButton.y, energyButton.width, energyButton.height)
 
-    love.graphics.setColor(0.5, 0.5, 0.5, 1)
-    love.graphics.rectangle("line", backButton.x, backButton.y, backButton.width, backButton.height)
+     love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.rectangle("fill", backButton.x, backButton.y, backButton.width, backButton.height)
 
     --Dibujar texto coins
     love.graphics.setColor(1, 0, 0, 1)
