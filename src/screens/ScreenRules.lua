@@ -3,25 +3,35 @@ require("src/objects/Button")
 local fontRules
 
 local backButton = {
-    x = 500,
+    x = 530,
     y = 600,
-    width = 110,
-    height = 50,
+    width = 250,
+    height = 70,
+    scaleX = 0.83,
+    scaleY = 0.6,
+    image = 0,
     isPresed = false,
-    wasPresed = false
+    wasPresed = false,
+    textX = 610,
+    textY = 615
 }
 
-function rulesInit(font)
+function rulesInit(font, buttonImgSprite)
     --Recursos
     fontRules = font
 
     --Usar la funcion buttonInit
-    backButton.x = 590
+    backButton.x = 530
     backButton.y = 600
-    backButton.width = 110
-    backButton.height = 50
+    backButton.width = 250
+    backButton.height = 70
+    backButton.scaleX = 0.85
+    backButton.scaleY = 0.6
+    backButton.image = buttonImgSprite
     backButton.isPresed = false
     backButton.wasPresed = false
+    backButton.textX = 610
+    backButton.textY = 615
 end
 
 function rulesUpdate(mousePos)
@@ -52,8 +62,24 @@ function rulesDraw()
     rulesTextDraw3 =  love.graphics.newText(fontRules, "be careful not to use up all your energy.")
     love.graphics.draw (rulesTextDraw3, 150, 250)
 
-    --Dibujar botones
-    love.graphics.setColor(0.5, 0.5, 0.5, 1)
-    love.graphics.rectangle("line", backButton.x, backButton.y, backButton.width, backButton.height)
+    rulesTextStoreRam = love.graphics.newText(fontRules, "RAM = 10 crypto")
+    love.graphics.draw (rulesTextStoreRam, 150, 330)
 
+    rulesTextStoreCPU = love.graphics.newText(fontRules, "CPU = 20 crypto")
+    love.graphics.draw (rulesTextStoreCPU, 150, 380)
+
+    rulesTextStoreGPU = love.graphics.newText(fontRules, "GPU = 30 crypto")
+    love.graphics.draw (rulesTextStoreGPU, 150, 430)
+
+    rulesTextStoreEnergy = love.graphics.newText(fontRules, "Energy = 50 crypto")
+    love.graphics.draw (rulesTextStoreEnergy, 150, 480)
+
+    --Dibujar botones
+    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.draw(backButton.image, backButton.x, backButton.y, 0, backButton.scaleX, backButton.scaleY)
+    
+    --Texto boton
+    backButtonTextDraw = love.graphics.newText(fontRules, "BACK")
+    love.graphics.draw (backButtonTextDraw, backButton.textX, backButton.textY)
+    
 end

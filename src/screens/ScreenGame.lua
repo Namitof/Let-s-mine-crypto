@@ -359,7 +359,7 @@ function gameDraw()
 
     --Dibujar texto coins
     love.graphics.setColor(0.349, 1, 0.349, 1)
-    coinsText = love.graphics.newText(fontGame, "Coins: " .. stats.coins)
+    coinsText = love.graphics.newText(fontGame, "Crypto: " .. stats.coins)
     love.graphics.draw (coinsText, 10, 10)
 
     --Dibujar texto store

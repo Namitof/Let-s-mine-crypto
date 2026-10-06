@@ -3,24 +3,31 @@ require("src/objects/Button")
 local fontCredits
 
 local backButton = {
-    x = 0,
-    y = 0,
-    width = 110,
-    height = 50,
+    x = 530,
+    y = 600,
+    width = 250,
+    height = 70,
     isPresed = false,
-    wasPresed = false
+    wasPresed = false,
+    textX = 610,
+    textY = 615
 }
 
-function creditsInit(font)
+function creditsInit(font, buttonImgSprite)
     --Recursos
     fontCredits = font
 
-    backButton.x = 590
+    backButton.x = 530
     backButton.y = 600
-    backButton.width = 110
-    backButton.height = 50
+    backButton.scaleX = 0.83
+    backButton.scaleY = 0.6
+    backButton.image = buttonImgSprite
+    backButton.width = 250
+    backButton.height = 70
     backButton.isPresed = false
     backButton.wasPresed = false
+    backButton.textX = 610
+    backButton.textY = 615
 end
 
 function creditsUpdate(mousePos)
@@ -53,9 +60,14 @@ function creditsDraw()
     love.graphics.draw (creditsTextArt, 400, 300)
     love.graphics.draw (creditsTextArtBy1, 400, 345)
     love.graphics.draw (creditsTextArtBy2, 400, 390)
-
+    
     --Dibujar botones
-    love.graphics.setColor(0.5, 0.5, 0.5, 1)
-    love.graphics.rectangle("line", backButton.x, backButton.y, backButton.width, backButton.height)
-
+    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.draw(backButton.image, backButton.x, backButton.y, 0, backButton.scaleX, backButton.scaleY)
+    
+    --Texto boton
+    backButtonTextDraw = love.graphics.newText(fontCredits, "BACK")
+    love.graphics.draw (backButtonTextDraw, backButton.textX, backButton.textY)
+    
+    
 end

@@ -32,8 +32,8 @@ function love.load()
     --Inicializacion de escenas
     menuInit(font, computerImg, keyboardImg, mouseImg, backgroundOneImg)
     gameInit(width, height, font, computerImg, keyboardImg, mouseImg, backgroundOneImg, computerBackground, buttonImg)
-    creditsInit(font)
-    rulesInit(font)
+    creditsInit(font, buttonImg)
+    rulesInit(font, buttonImg)
     winInit(font, backgroundWin, buttonImg)
     defeatInit(font, backgroundDefeat, buttonImg)
 end
