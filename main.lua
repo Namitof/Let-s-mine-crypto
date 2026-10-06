@@ -4,6 +4,7 @@ require("src/screens/ScreenManager")
 require("src/screens/ScreenCredits")
 require("src/screens/ScreenRules")
 require("src/screens/ScreenWin")
+require("src/screens/ScreenDefeat")
 
 local mousePos = {
     x = 0,
@@ -19,9 +20,10 @@ local backgroundOneImg = love.graphics.newImage("res/background/backgroundOne.pn
 local computerBackground = love.graphics.newImage("res/gameImg/computerBackground.png")
 local buttonImg = love.graphics.newImage("res/button/Button.png")
 local backgroundWin = love.graphics.newImage("res/background/WinBackground.png")
+local backgroundDefeat = love.graphics.newImage("res/background/DefeatBackground.png")
 
 function love.load()
-    SetScreen(screen.win)
+    SetScreen(screen.menu)
 
     love.window.setTitle("Let's mine crypto!")
     love.window.setMode(1280,720)
@@ -33,10 +35,11 @@ function love.load()
     creditsInit(font)
     rulesInit(font)
     winInit(font, backgroundWin, buttonImg)
+    defeatInit(font, backgroundDefeat, buttonImg)
 end
 
 function love.update(dt)
-    --Obtener posicion del mouse
+    --Obtener posicion del mouse 
     mousePos.x, mousePos.y = love.mouse.getPosition() 
 
     --Escenas
@@ -58,7 +61,7 @@ function love.update(dt)
     elseif (currentScreen == screen.win) then
         winUpdate(mousePos)
     elseif (currentScreen == screen.defeat) then
-        -- VACIO
+        defeatUpdate(mousePos)
     elseif (currentScreen == screen.exit) then
         love.quit()
     end
@@ -79,7 +82,7 @@ function love.draw()
     elseif (currentScreen == screen.win) then
         winDraw()
     elseif (currentScreen == screen.defeat) then
-        -- VACIO
+        defeatDraw()
     end
 end
 
