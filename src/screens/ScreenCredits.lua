@@ -36,7 +36,8 @@ end
 
 function creditsDraw()
     --Dibujar creditos
-    love.graphics.setColor(1, 0, 0, 1)
+    love.graphics.setBackgroundColor(0.2, 0.2, 0.2)
+    love.graphics.setColor(0, 1, 0, 1)
     creditsTextDraw = love.graphics.newText(fontCredits, "Let's mine crypto!")
     creditsTextGameDevelopment = love.graphics.newText(fontCredits, "Game Development by:")
     creditsTextGameDeveloper1 = love.graphics.newText(fontCredits, "Mercedes Ramirez Diaz")
@@ -46,12 +47,12 @@ function creditsDraw()
     creditsTextArtBy2 = love.graphics.newText(fontCredits, "Nahuel Suarez")
 
     love.graphics.draw (creditsTextDraw, 420, 50)
-    love.graphics.draw (creditsTextGameDevelopment, 400, 110)
-    love.graphics.draw (creditsTextGameDeveloper1, 400, 160)
-    love.graphics.draw (creditsTextGameDeveloper2, 400, 200)
-    love.graphics.draw (creditsTextArt, 400, 260)
-    love.graphics.draw (creditsTextArtBy1, 400, 310)
-    love.graphics.draw (creditsTextArtBy2, 400, 360)
+    love.graphics.draw (creditsTextGameDevelopment, 400, 150)
+    love.graphics.draw (creditsTextGameDeveloper1, 400, 195)
+    love.graphics.draw (creditsTextGameDeveloper2, 400, 240)
+    love.graphics.draw (creditsTextArt, 400, 300)
+    love.graphics.draw (creditsTextArtBy1, 400, 345)
+    love.graphics.draw (creditsTextArtBy2, 400, 390)
 
     --Dibujar botones
     love.graphics.setColor(0.5, 0.5, 0.5, 1)
