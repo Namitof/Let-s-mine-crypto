@@ -277,9 +277,9 @@ function gameDraw()
     love.graphics.draw(keyboard.image, keyboard.x, keyboard.y, 0, keyboard.scaleX, keyboard.scaleY)
     love.graphics.draw(mouse.image, mouse.x, mouse.y, 0, mouse.scaleX, mouse.scaleY)
 
-    --Dibujar rectangulo
-    love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.rectangle("fill", clickerButton.x, clickerButton.y, clickerButton.width, clickerButton.height)
+    --Dibujar rectangulo clickerButton
+    --love.graphics.setColor(1, 1, 1, 1)
+    --love.graphics.rectangle("fill", clickerButton.x, clickerButton.y, clickerButton.width, clickerButton.height)
 
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.rectangle("fill", powerUpOneButton.x, powerUpOneButton.y, powerUpOneButton.width, powerUpOneButton.height)
@@ -290,19 +290,51 @@ function gameDraw()
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.rectangle("fill", powerUpThreeButton.x, powerUpThreeButton.y, powerUpThreeButton.width, powerUpThreeButton.height)
 
-     love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.setColor(1, 1, 1, 1)
     love.graphics.rectangle("fill", energyButton.x, energyButton.y, energyButton.width, energyButton.height)
 
-     love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.setColor(1, 1, 1, 1)
     love.graphics.rectangle("fill", backButton.x, backButton.y, backButton.width, backButton.height)
 
     --Dibujar texto coins
+    love.graphics.setColor(0.349, 1, 0.349, 1)
+    coinsText = love.graphics.newText(fontGame, "Coins: " .. stats.coins)
+    love.graphics.draw (coinsText, 10, 10)
+
+    --Dibujar texto store
     love.graphics.setColor(1, 0, 0, 1)
-    coinsText = love.graphics.newText(fontGame, "Coins: " .. stats.coins .. " of 1000")
-    love.graphics.draw (coinsText, 50, 50)
+    storeText = love.graphics.newText(fontGame, "- STORE -")
+    love.graphics.draw (storeText, 970, 50)
 
     --Dibujar texto energy
-    love.graphics.setColor(1, 0, 0, 1)
+    love.graphics.setColor(0.349, 1, 0.349, 1)
     energyText = love.graphics.newText(fontGame, "Energy: " .. stats.energy)
-    love.graphics.draw (energyText, 80, 80)
+    love.graphics.draw (energyText, 10, 60)
+
+
+    --Dibujar texto powerUpOne
+    love.graphics.setColor(0, 0.58, 0, 1)
+    powerUpOneText = love.graphics.newText(fontGame, "RAMs: " .. powerUpOne.quantity)
+    love.graphics.draw (powerUpOneText, powerUpOneButton.x + 15, powerUpOneButton.y + 15)
+
+    --Dibujar texto powerUpTwo
+    love.graphics.setColor(0, 0.58, 0, 1)
+    coinsText = love.graphics.newText(fontGame, "CPUs: " .. powerUpTwo.quantity)
+    love.graphics.draw (coinsText, powerUpTwoButton.x + 15, powerUpTwoButton.y + 15)
+
+    --Dibujar texto powerUpThree
+    love.graphics.setColor(0, 0.58, 0, 1)
+    coinsText = love.graphics.newText(fontGame, "GPUs: " .. powerUpThree.quantity)
+    love.graphics.draw (coinsText, powerUpThreeButton.x + 15, powerUpThreeButton.y + 15)
+
+    --Dibujar texto energyButton
+    love.graphics.setColor(0, 0.58, 0, 1)
+    coinsText = love.graphics.newText(fontGame, "+10 Energy")
+    love.graphics.draw (coinsText, energyButton.x + 8, energyButton.y + 15)
+
+    --Dibujar texto back
+    love.graphics.setColor(0, 0.58, 0, 1)
+    coinsText = love.graphics.newText(fontGame, "Back")
+    love.graphics.draw (coinsText, backButton.x + 15, backButton.y + 15)
+
 end
