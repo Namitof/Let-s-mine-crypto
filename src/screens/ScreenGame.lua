@@ -159,6 +159,8 @@ local computerBackground = {
     image = 0
 }
 
+local winValue
+
 function gameInit(width, height, font, computerSprite, keyboardSprite, mouseSprite, backgroundOneSprite, computerBackgroundSprite, buttonImg)
     --Recursos
     fontGame = font
@@ -372,27 +374,40 @@ function gameDraw()
 
 
     --Dibujar texto powerUpOne
-    love.graphics.setColor(0, 0.58, 0, 1)
+    if (powerUpOne.isEquiped) then
+        love.graphics.setColor(0, 1, 0, 1)
+    else
+        love.graphics.setColor(0, 0.58, 0, 1)
+    end
+
     powerUpOneText = love.graphics.newText(fontGame, "RAMs: " .. powerUpOne.quantity)
     love.graphics.draw (powerUpOneText, powerUpOneButton.x + 15, powerUpOneButton.y + 15)
 
     --Dibujar texto powerUpTwo
-    love.graphics.setColor(0, 0.58, 0, 1)
+    if (powerUpTwo.isEquiped) then
+        love.graphics.setColor(0, 1, 0, 1)
+    else
+        love.graphics.setColor(0, 0.58, 0, 1)
+    end
     coinsText = love.graphics.newText(fontGame, "CPUs: " .. powerUpTwo.quantity)
     love.graphics.draw (coinsText, powerUpTwoButton.x + 15, powerUpTwoButton.y + 15)
 
     --Dibujar texto powerUpThree
-    love.graphics.setColor(0, 0.58, 0, 1)
+    if (powerUpThree.isEquiped) then
+        love.graphics.setColor(0, 1, 0, 1)
+    else
+        love.graphics.setColor(0, 0.58, 0, 1)
+    end
     coinsText = love.graphics.newText(fontGame, "GPUs: " .. powerUpThree.quantity)
     love.graphics.draw (coinsText, powerUpThreeButton.x + 15, powerUpThreeButton.y + 15)
 
     --Dibujar texto energyButton
-    love.graphics.setColor(0, 0.58, 0, 1)
+    love.graphics.setColor(0, 1, 0, 1)
     coinsText = love.graphics.newText(fontGame, "+10 Energy")
     love.graphics.draw (coinsText, energyButton.x + 8, energyButton.y + 15)
 
     --Dibujar texto back
-    love.graphics.setColor(0, 0.58, 0, 1)
+    love.graphics.setColor(0, 1, 0, 1)
     coinsText = love.graphics.newText(fontGame, "Back")
     love.graphics.draw (coinsText, backButton.x + 80, backButton.y + 15)
 
