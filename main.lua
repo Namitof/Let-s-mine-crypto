@@ -17,6 +17,7 @@ local keyboardImg = love.graphics.newImage("res/gameImg/Keyboard.png")
 local mouseImg = love.graphics.newImage("res/gameImg/Mouse.png")
 local backgroundOneImg = love.graphics.newImage("res/background/backgroundOne.png")
 local computerBackground = love.graphics.newImage("res/gameImg/computerBackground.png")
+local buttonImg = love.graphics.newImage("res/button/Button.png")
 
 function love.load()
     SetScreen(screen.win)
@@ -26,7 +27,7 @@ function love.load()
     width, height = love.graphics.getDimensions( )
 
     --Inicializacion de escenas
-    menuInit(font, backgroundOneImg)
+    menuInit(font, computerImg, keyboardImg, mouseImg, backgroundOneImg)
     gameInit(width, height, font, computerImg, keyboardImg, mouseImg, backgroundOneImg, computerBackground)
     creditsInit(font)
     rulesInit(font)

@@ -148,22 +148,32 @@ function gameInit(width, height, font, computerSprite, keyboardSprite, mouseSpri
     --Recursos
     fontGame = font
     
+    computer.x = 190
+    computer.y = 170
     computer.scaleX = 1.5
     computer.scaleY = 1.5
     computer.image = computerSprite
 
+    keyboard.x = 60
+    keyboard.y = 290
     keyboard.scaleX = 2
     keyboard.scaleY = 2
     keyboard.image = keyboardSprite
 
+    mouse.x = 620
+    mouse.y = 540
     mouse.scaleX = 0.5
     mouse.scaleY = 0.5
     mouse.image = mouseSprite
 
+    backgroundOne.x = 0
+    backgroundOne.y = 0
     backgroundOne.scaleX = 1
     backgroundOne.scaleY = 1
     backgroundOne.image = backgroundOneSprite
 
+    computerBackground.x = 220
+    computerBackground.y = 270
     computerBackground.scaleX = 0.28
     computerBackground.scaleY = 0.24
     computerBackground.image = computerBackgroundSprite

@@ -15,6 +15,16 @@ local exitWinButton = {
 
 function winInit(font)
     fontWin = font
+
+    --Usar la funcion buttonInit
+    exitWinButton.x = 500
+    exitWinButton.y = 500
+    exitWinButton.width = 220
+    exitWinButton.height = 80
+    exitWinButton.isPresed = false
+    exitWinButton.wasPresed = false
+    exitWinButton.textX = 565
+    exitWinButton.textY = 520
 end
 
 function winUpdate(mousePos)

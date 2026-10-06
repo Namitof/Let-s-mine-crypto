@@ -14,6 +14,14 @@ local backButton = {
 function rulesInit(font)
     --Recursos
     fontRules = font
+
+    --Usar la funcion buttonInit
+    backButton.x = 500
+    backButton.y = 600
+    backButton.width = 110
+    backButton.height = 50
+    backButton.isPresed = false
+    backButton.wasPresed = false
 end
 
 function rulesUpdate(mousePos)

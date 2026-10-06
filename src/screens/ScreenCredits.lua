@@ -14,6 +14,13 @@ local backButton = {
 function creditsInit(font)
     --Recursos
     fontCredits = font
+
+    backButton.x = 0
+    backButton.y = 0
+    backButton.width = 110
+    backButton.height = 50
+    backButton.isPresed = false
+    backButton.wasPresed = false
 end
 
 function creditsUpdate(mousePos)
