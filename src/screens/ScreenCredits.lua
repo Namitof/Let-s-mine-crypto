@@ -15,8 +15,8 @@ function creditsInit(font)
     --Recursos
     fontCredits = font
 
-    backButton.x = 0
-    backButton.y = 0
+    backButton.x = 590
+    backButton.y = 600
     backButton.width = 110
     backButton.height = 50
     backButton.isPresed = false

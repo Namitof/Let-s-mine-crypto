@@ -27,7 +27,7 @@ function love.load()
 
     love.window.setTitle("Let's mine crypto!")
     love.window.setMode(1280,720)
-    width, height = love.graphics.getDimensions( )
+    width, height = love.graphics.getDimensions()
 
     --Inicializacion de escenas
     menuInit(font, computerImg, keyboardImg, mouseImg, backgroundOneImg)

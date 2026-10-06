@@ -16,7 +16,7 @@ function rulesInit(font)
     fontRules = font
 
     --Usar la funcion buttonInit
-    backButton.x = 500
+    backButton.x = 590
     backButton.y = 600
     backButton.width = 110
     backButton.height = 50
