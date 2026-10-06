@@ -63,7 +63,7 @@ function love.update(dt)
     elseif (currentScreen == screen.defeat) then
         defeatUpdate(mousePos)
     elseif (currentScreen == screen.exit) then
-        love.quit()
+        love.event.quit()
     end
 end
 
@@ -88,6 +88,14 @@ end
 
 function love.quit()
     font = nil
+    computerImg = nil
+    keyboardImg = nil
+    mouseImg = nil
+    backgroundOneImg = nil
+    computerBackground = nil
+    buttonImg = nil
+    backgroundWin = nil
+    backgroundDefeat = nil
     collectgarbage("collect")
     love.window.close()
 end
