@@ -46,9 +46,22 @@ local exitButton = {
 
 local fontMenu
 
-function menuInit(font)
+local backgroundOne = {
+    x = 0,
+    y = 0,
+    scaleX = 1,
+    scaleY = 1,
+    image = 0
+}
+
+function menuInit(font, backgroundOneSprite)
     --Recursos
     fontMenu = font
+
+    backgroundOne.scaleX = 1
+    backgroundOne.scaleY = 1
+    backgroundOne.image = backgroundOneSprite
+
 end
 
 function menuUpdate(mousePos)
@@ -75,6 +88,10 @@ function menuUpdate(mousePos)
 end
 
 function menuDraw()
+    --Dibujar background
+    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.draw(backgroundOne.image, backgroundOne.x, backgroundOne.y, 0, backgroundOne.scaleX, backgroundOne.scaleY)
+
     --DIbujar titulo
     love.graphics.setColor(1, 0, 0, 1)
     titleText = love.graphics.newText(fontMenu, "Let's mine crypto!")
