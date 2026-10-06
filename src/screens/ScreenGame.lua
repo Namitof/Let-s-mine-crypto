@@ -22,6 +22,9 @@ local clickerButton = {
 local backButton = {
     x = 0,
     y = 0,
+    scaleX = 0.83,
+    scaleY = 0.6,
+    image = 0,
     width = 110,
     height = 50,
     isPresed = false,
@@ -31,6 +34,9 @@ local backButton = {
 local energyButton = {
     x = 0,
     y = 0,
+    scaleX = 0.83,
+    scaleY = 0.6,
+    image = 0,
     width = 110,
     height = 50,
     isPresed = false,
@@ -40,6 +46,9 @@ local energyButton = {
 local powerUpOneButton = {
     x = 0,
     y = 0,
+    scaleX = 0.83,
+    scaleY = 0.6,
+    image = 0,
     width = 110,
     height = 50,
     isPresed = false,
@@ -49,6 +58,9 @@ local powerUpOneButton = {
 local powerUpTwoButton = {
     x = 0,
     y = 0,
+    scaleX = 0.83,
+    scaleY = 0.6,
+    image = 0,
     width = 110,
     height = 50,
     isPresed = false,
@@ -58,6 +70,9 @@ local powerUpTwoButton = {
 local powerUpThreeButton = {
     x = 0,
     y = 0,
+    scaleX = 0.83,
+    scaleY = 0.6,
+    image = 0,
     width = 110,
     height = 50,
     isPresed = false,
@@ -144,7 +159,15 @@ local computerBackground = {
     image = 0
 }
 
-function gameInit(width, height, font, computerSprite, keyboardSprite, mouseSprite, backgroundOneSprite, computerBackgroundSprite)
+local buttonImg = {
+    x = 220,
+    y = 270,
+    scaleX = 0.28,
+    scaleY = 0.24,
+    image = 0
+}
+
+function gameInit(width, height, font, computerSprite, keyboardSprite, mouseSprite, backgroundOneSprite, computerBackgroundSprite, buttonImg)
     --Recursos
     fontGame = font
     
@@ -177,6 +200,26 @@ function gameInit(width, height, font, computerSprite, keyboardSprite, mouseSpri
     computerBackground.scaleX = 0.28
     computerBackground.scaleY = 0.24
     computerBackground.image = computerBackgroundSprite
+
+    energyButton.scaleX = 0.83
+    energyButton.scaleY = 0.6
+    energyButton.image = buttonImg
+
+    powerUpOneButton.scaleX = 0.83
+    powerUpOneButton.scaleY = 0.6
+    powerUpOneButton.image = buttonImg
+    
+    powerUpTwoButton.scaleX = 0.83
+    powerUpTwoButton.scaleY = 0.6
+    powerUpTwoButton.image = buttonImg
+
+    powerUpThreeButton.scaleX = 0.83
+    powerUpThreeButton.scaleY = 0.6
+    powerUpThreeButton.image = buttonImg  
+
+    backButton.scaleX = 0.83
+    backButton.scaleY = 0.6
+    backButton.image = buttonImg  
 
     --Stats
     stats.coins = 0
@@ -306,19 +349,19 @@ function gameDraw()
     --love.graphics.rectangle("fill", clickerButton.x, clickerButton.y, clickerButton.width, clickerButton.height)
 
     love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.rectangle("fill", powerUpOneButton.x, powerUpOneButton.y, powerUpOneButton.width, powerUpOneButton.height)
+    love.graphics.draw(powerUpOneButton.image, powerUpOneButton.x, powerUpOneButton.y, 0, powerUpOneButton.scaleX, powerUpOneButton.scaleY)
 
     love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.rectangle("fill", powerUpTwoButton.x, powerUpTwoButton.y, powerUpTwoButton.width, powerUpTwoButton.height)
+    love.graphics.draw(powerUpTwoButton.image, powerUpTwoButton.x, powerUpTwoButton.y, 0, powerUpTwoButton.scaleX, powerUpTwoButton.scaleY)
 
     love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.rectangle("fill", powerUpThreeButton.x, powerUpThreeButton.y, powerUpThreeButton.width, powerUpThreeButton.height)
+    love.graphics.draw(powerUpThreeButton.image, powerUpThreeButton.x, powerUpThreeButton.y, 0, powerUpThreeButton.scaleX, powerUpThreeButton.scaleY)
 
     love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.rectangle("fill", energyButton.x, energyButton.y, energyButton.width, energyButton.height)
+    love.graphics.draw(energyButton.image, energyButton.x, energyButton.y, 0, energyButton.scaleX, energyButton.scaleY)
 
     love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.rectangle("fill", backButton.x, backButton.y, backButton.width, backButton.height)
+    love.graphics.draw(backButton.image, backButton.x, backButton.y, 0, backButton.scaleX, backButton.scaleY)
 
     --Dibujar texto coins
     love.graphics.setColor(0.349, 1, 0.349, 1)
@@ -359,6 +402,6 @@ function gameDraw()
     --Dibujar texto back
     love.graphics.setColor(0, 0.58, 0, 1)
     coinsText = love.graphics.newText(fontGame, "Back")
-    love.graphics.draw (coinsText, backButton.x + 15, backButton.y + 15)
+    love.graphics.draw (coinsText, backButton.x + 80, backButton.y + 15)
 
 end

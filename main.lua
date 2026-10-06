@@ -20,7 +20,7 @@ local computerBackground = love.graphics.newImage("res/gameImg/computerBackgroun
 local buttonImg = love.graphics.newImage("res/button/Button.png")
 
 function love.load()
-    SetScreen(screen.win)
+    SetScreen(screen.menu)
 
     love.window.setTitle("Let's mine crypto!")
     love.window.setMode(1280,720)
@@ -28,7 +28,7 @@ function love.load()
 
     --Inicializacion de escenas
     menuInit(font, computerImg, keyboardImg, mouseImg, backgroundOneImg)
-    gameInit(width, height, font, computerImg, keyboardImg, mouseImg, backgroundOneImg, computerBackground)
+    gameInit(width, height, font, computerImg, keyboardImg, mouseImg, backgroundOneImg, computerBackground, buttonImg)
     creditsInit(font)
     rulesInit(font)
     winInit(font)
@@ -45,7 +45,7 @@ function love.update(dt)
         menuUpdate(mousePos)
 
         if (GetScreen() == screen.game) then
-            gameInit(width,height,font, computerImg, keyboardImg, mouseImg, backgroundOneImg, computerBackground)
+            gameInit(width,height,font, computerImg, keyboardImg, mouseImg, backgroundOneImg, computerBackground, buttonImg)
         end
 
     elseif (currentScreen == screen.game) then
