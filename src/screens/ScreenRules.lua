@@ -3,8 +3,8 @@ require("src/objects/Button")
 local fontRules
 
 local backButton = {
-    x = 0,
-    y = 0,
+    x = 500,
+    y = 600,
     width = 110,
     height = 50,
     isPresed = false,
@@ -30,9 +30,18 @@ end
 function rulesDraw()
     --Dibujar reglas
     love.graphics.setColor(1, 0, 0, 1)
-    --rulesTextDraw =  love.graphics.newText(fontCredits, "Let's mine crypto!")
-   
-    love.graphics.draw (rulesTextDraw, 420, 50)
+
+    rulesTextDraw1 =  love.graphics.newText(fontRules, "Click the keyboard and mouse to mine crypto,")
+    love.graphics.draw (rulesTextDraw1, 150, 50)
+
+    rulesTextDraw2 =  love.graphics.newText(fontRules, "buy upgrades to reach 1,000 crypto.")
+    love.graphics.draw (rulesTextDraw2, 150, 100)
+
+    rulesTextDraw3 =  love.graphics.newText(fontRules, "But WATCH OUT!!!")
+    love.graphics.draw (rulesTextDraw3, 150, 200)
+
+    rulesTextDraw3 =  love.graphics.newText(fontRules, "be careful not to use up all your energy.")
+    love.graphics.draw (rulesTextDraw3, 150, 250)
 
     --Dibujar botones
     love.graphics.setColor(0.5, 0.5, 0.5, 1)
