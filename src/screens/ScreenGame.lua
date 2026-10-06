@@ -5,9 +5,9 @@ require("src/objects/Button")
 
 --Constantes
 local POWER_UP_ONE_PRICE = 10
-local POWER_UP_TWO_PRICE = 10
-local POWER_UP_THREE_PRICE = 10
-local ENERGY_PRICE = 10
+local POWER_UP_TWO_PRICE = 20
+local POWER_UP_THREE_PRICE = 30
+local ENERGY_PRICE = 50
 
 --Buttons
 local clickerButton = {
@@ -184,9 +184,9 @@ function gameInit(width, height, font, computerSprite, keyboardSprite, mouseSpri
     ButtonInit(energyButton, 950, 450)
 
     --PowerUps
-    PowerUpInit(powerUpOne, 0, 0.5, 0.1, false, 0)
+    PowerUpInit(powerUpOne, 0, 1, 0.1, false, 0)
     PowerUpInit(powerUpTwo, 0, 1, 1, false, 0)
-    PowerUpInit(powerUpThree, 0, 5, 10, false, 0)
+    PowerUpInit(powerUpThree, 0, 1, 5, false, 0)
 end
 
 function gameUpdate(dt, mousePos)
@@ -206,12 +206,12 @@ function gameUpdate(dt, mousePos)
     --Evaluar energy
     CheckEnergy(energy, stats, dt)
     if (stats.energy <= 0) then
-        SetScreen(screen.menu)
+        SetScreen(screen.defeat)
     end
 
     --Win condition
     if (stats.coins >= 1000) then
-        SetScreen(screen.menu)
+        SetScreen(screen.win)
     end
 
     --Evaluar estado de botones
@@ -244,7 +244,7 @@ function gameUpdate(dt, mousePos)
             stats.coins = stats.coins - POWER_UP_TWO_PRICE
             powerUpTwo.quantity = 1
         elseif (stats.coins >= POWER_UP_TWO_PRICE and (powerUpTwo.isEquiped)) then
-            powerUpTwo.addCoins = powerUpTwo.addCoins + 0.1
+            powerUpTwo.addCoins = powerUpTwo.addCoins + 0.3
             stats.coins = stats.coins - POWER_UP_TWO_PRICE
             powerUpTwo.quantity = powerUpTwo.quantity + 1
         end
@@ -258,7 +258,7 @@ function gameUpdate(dt, mousePos)
             stats.coins = stats.coins - POWER_UP_THREE_PRICE
             powerUpThree.quantity = 1
         elseif (stats.coins >= POWER_UP_THREE_PRICE and (powerUpThree.isEquiped)) then
-            powerUpThree.addCoins = powerUpThree.addCoins + 0.1
+            powerUpThree.addCoins = powerUpThree.addCoins + 0.5
             stats.coins = stats.coins - POWER_UP_THREE_PRICE
             powerUpThree.quantity = powerUpThree.quantity + 1
         end
